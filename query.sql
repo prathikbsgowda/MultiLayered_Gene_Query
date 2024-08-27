@@ -4,7 +4,9 @@ WITH kin AS (SELECT DISTINCT  co_bi_inter_groupidconditions.condition_id_id,site
 						 ON co_bi_inter_conditiongroups.condition_group_id=co_bi_inter_groupidconditions.groupid_id 
 						WHERE co_bi_inter_conditiongroups.gene_id = 'PAK1'
 				),
-				
+
+
+
 inter_binary AS (
     SELECT DISTINCT a.GENE_ID
     FROM co_bi_inter_genebinayinter a
@@ -16,6 +18,7 @@ inter AS (
  			JOIN co_bi_inter_groupidconditions ON co_bi_inter_conditiongroups.condition_group_id=co_bi_inter_groupidconditions.groupid_id 
 			WHERE co_bi_inter_conditiongroups.gene_id IN (SELECT * FROM inter_binary)
 			),
+	
 
 count_kin AS (
 					SELECT site_id,COUNT(DISTINCT co_bi_inter_groupidconditions.condition_id_id) AS kin_freq,gene_id AS kin 
