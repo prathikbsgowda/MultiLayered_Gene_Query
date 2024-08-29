@@ -34,12 +34,13 @@ shared_freq AS (
 					 FROM kin INNER JOIN inter ON kin.condition_id_id = inter.condition_id_id 
 					 GROUP BY kin_sit,kin,site_id,gene_id
 					 )
-					 
+
+	
 SELECT shared_freq.kin,kin_sit,kin_freq,shared_freqn,Binary_interactor,shared_freq.site_id,interact_freq,
 			LEAST ( kin_freq , interact_freq )AS min_freq ,
 			(CAST(shared_freqn AS DECIMAL(10, 2)) / CAST(LEAST( kin_freq , interact_freq ) AS DECIMAL(10, 2))) AS shared_score
 	
 				FROM shared_freq JOIN count_kin ON count_kin.site_id = shared_freq.kin_sit 
 				JOIN count_inter ON shared_freq.Binary_interactor = count_inter.gene_id 
-				AND shared_freq.site_id = count_inter.site_id 
+				AND shared_freq.site_id = count_inter.site_id --Add Limit 
  
