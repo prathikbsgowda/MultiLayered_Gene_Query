@@ -4,6 +4,7 @@ WITH kin AS (SELECT DISTINCT  co_bi_inter_groupidconditions.condition_id_id,site
 						 ON co_bi_inter_conditiongroups.condition_group_id=co_bi_inter_groupidconditions.groupid_id 
 						WHERE co_bi_inter_conditiongroups.gene_id = 'PAK1'
 				),
+	
 inter_binary AS (
     SELECT DISTINCT a.GENE_ID
     FROM co_bi_inter_genebinayinter a
@@ -22,18 +23,21 @@ count_kin AS (
 					FROM co_bi_inter_conditiongroups JOIN co_bi_inter_groupidconditions
 					ON co_bi_inter_conditiongroups.condition_group_id=co_bi_inter_groupidconditions.groupid_id 
 					WHERE co_bi_inter_conditiongroups.gene_id = 'PAK1' GROUP BY site_id),
+	
 count_inter AS (
 					SELECT   count(DISTINCT co_bi_inter_groupidconditions.condition_id_id)AS interact_freq,site_id,gene_id 
 					FROM co_bi_inter_conditiongroups JOIN co_bi_inter_groupidconditions 
 					ON co_bi_inter_conditiongroups.condition_group_id=co_bi_inter_groupidconditions.groupid_id 
 					WHERE co_bi_inter_conditiongroups.gene_id IN (SELECT * FROM inter_binary) GROUP BY site_id,gene_id
 					),
+	
 
 shared_freq AS ( 
 					SELECT kin,kin_sit,count(DISTINCT kin.condition_id_id )AS shared_freqn,gene_id AS Binary_interactor,site_id
 					 FROM kin INNER JOIN inter ON kin.condition_id_id = inter.condition_id_id 
 					 GROUP BY kin_sit,kin,site_id,gene_id
 					 )
+	
 SELECT shared_freq.kin,kin_sit,kin_freq,shared_freqn,Binary_interactor,shared_freq.site_id,interact_freq,
 			LEAST ( kin_freq , interact_freq )AS min_freq ,
 			(CAST(shared_freqn AS DECIMAL(10, 2)) / CAST(LEAST( kin_freq , interact_freq ) AS DECIMAL(10, 2))) AS shared_score
