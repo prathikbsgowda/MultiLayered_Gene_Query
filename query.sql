@@ -5,11 +5,13 @@ WITH kin AS (SELECT DISTINCT  co_bi_inter_groupidconditions.condition_id_id,site
 						WHERE co_bi_inter_conditiongroups.gene_id = 'PAK1'
 				),
 
+
+
 inter_binary AS (
     SELECT DISTINCT a.GENE_ID
     FROM co_bi_inter_genebinayinter a
     JOIN co_bi_inter_genebinayinter b ON a.interactor_id = b.interactor_id 
-    WHERE b.gene_id='PAK1'
+    WHERE b.gene_id='TTN'
 						),
 	
 inter AS (
