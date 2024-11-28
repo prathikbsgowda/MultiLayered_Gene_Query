@@ -22,7 +22,7 @@ count_kin AS (
 					SELECT site_id,COUNT(DISTINCT co_bi_inter_groupidconditions.condition_id_id) AS kin_freq,gene_id AS kin 
 					FROM co_bi_inter_conditiongroups JOIN co_bi_inter_groupidconditions
 					ON co_bi_inter_conditiongroups.condition_group_id=co_bi_inter_groupidconditions.groupid_id 
-					WHERE co_bi_inter_conditiongroups.gene_id = 'NSUN2' GROUP BY site_id),
+					WHERE co_bi_inter_conditiongroups.gene_id = 'TTN' GROUP BY site_id),
 	
 	
 count_inter AS (
