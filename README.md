@@ -3,7 +3,6 @@
 This repository contains an advanced SQL query designed to analyze gene interactions, specifically focusing on the `PAK1` gene. The query utilizes nested subqueries to identify interaction frequencies, shared scores, and other key metrics for the gene and its interactors.
 
 ## 🧬 Query Overview
-
 The SQL query is structured into several key components:
 
 1. **🔍 Kinase Interaction (`kin`)**: 
