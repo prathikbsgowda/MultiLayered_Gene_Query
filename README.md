@@ -40,6 +40,7 @@ The final output of the query includes the following columns:
 - **`min_freq`**: Minimum frequency between `PAK1` and the binary interactor.
 - **`shared_score`**: Shared score calculated as the ratio of the shared frequency to the minimum frequency.
 
+
 ## 🚀 Usage
 
 To use this query:
