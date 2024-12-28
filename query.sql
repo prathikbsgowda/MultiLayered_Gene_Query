@@ -3,7 +3,8 @@ WITH kin AS (SELECT DISTINCT  co_bi_inter_groupidconditions.condition_id_id,site
 						FROM co_bi_inter_conditiongroups JOIN co_bi_inter_groupidconditions
 						 ON co_bi_inter_conditiongroups.condition_group_id=co_bi_inter_groupidconditions.groupid_id 
 						WHERE co_bi_inter_conditiongroups.gene_id = 'TTN'
-				),
+
+	),
 inter_binary AS (
     SELECT DISTINCT a.GENE_ID
     FROM co_bi_inter_genebinayinter a
