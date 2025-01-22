@@ -7,7 +7,8 @@ inter_binary AS (
     FROM co_bi_inter_genebinayinter a
     JOIN co_bi_inter_genebinayinter b ON a.interactor_id = b.interactor_id 
     WHERE b.gene_id=''
-						),	
+	
+	),	
 inter AS (
 			SELECT DISTINCT  co_bi_inter_groupidconditions.condition_id_id,site_id,gene_id FROM co_bi_inter_conditiongroups 
  			JOIN co_bi_inter_groupidconditions ON co_bi_inter_conditiongroups.condition_group_id=co_bi_inter_groupidconditions.groupid_id 
